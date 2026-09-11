@@ -335,7 +335,7 @@
                         <a class="nav-link <%= activePage === 'evento' ? 'active' : '' %>" href="/eventos"><i class="fa-solid fa-calendar me-1"></i> Eventos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <%= activePage === 'pagamento' ? 'active' : '' %>" href="/pagamento"><i class="fa-solid fa-hand-holding-dollar me-1"></i> PIX</a>
+                        <a class="nav-link <%= activePage === 'pagamento' ? 'active' : '' %>" href="/pagamento">
                     </li>
 
                     <% if (user) { %>
@@ -357,7 +357,6 @@
                     <% if (!isAdminView) { %>
                     <li class="nav-item ms-lg-1">
                         <a class="btn btn-danger btn-sm px-3 rounded-pill fw-bold text-white shadow-sm" href="/admin" title="Painel Administrativo">
-                            <i class="fa-solid fa-shield-halved me-1"></i> Admin
                         </a>
                     </li>
                     <% } %>
