@@ -11,9 +11,9 @@
                 <p class="text-muted small mb-0">Total cadastrado: <strong><%= associados.length %> associados</strong></p>
             </div>
             <div>
-                <a href="/admin/associados/novo" class="btn btn-primary">
-    <i class="fas fa-user-plus"></i> Novo Cadastro
-</a>
+                <button type="button" class="btn btn-primary fw-bold rounded-pill px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#modalNovoAssociado">
+                    <i class="fa-solid fa-user-plus me-2"></i> Novo Associado
+                </button>
             </div>
         </div>
 
@@ -230,6 +230,99 @@
                     <% } %>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Cadastrar Novo Associado -->
+<div class="modal fade" id="modalNovoAssociado" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            <div class="modal-header bg-primary text-white border-0 py-3">
+                <h5 class="modal-title fw-bold"><i class="fa-solid fa-user-plus me-2"></i>Cadastrar Novo Associado</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <form method="post" action="/admin/associados/novo" enctype="multipart/form-data">
+                <div class="modal-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label class="form-label small fw-bold">Nome Completo *</label>
+                            <input type="text" name="nome" class="form-control" placeholder="Nome do associado" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Categoria *</label>
+                            <select name="categoria" class="form-select" required>
+                                <option value="Sócio Atleta">Sócio Atleta</option>
+                                <option value="Sócio Efetivo">Sócio Efetivo</option>
+                                <option value="Sócio Colaborador">Sócio Colaborador</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">CPF *</label>
+                            <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">RG</label>
+                            <input type="text" name="rg" class="form-control" placeholder="Número do RG">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Data de Nascimento</label>
+                            <input type="date" name="data_nascimento" class="form-control" value="2000-01-01">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">E-mail</label>
+                            <input type="email" name="email" class="form-control" placeholder="email@exemplo.com">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Telefone / WhatsApp *</label>
+                            <input type="text" name="telefone" class="form-control" placeholder="(84) 99999-9999" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Identidade Surda</label>
+                            <select name="identidade_surda" class="form-select">
+                                <option value="Surdo(a)">Surdo(a)</option>
+                                <option value="Deficiência Auditiva">Deficiência Auditiva</option>
+                                <option value="Intérprete / Familiar ouvinte">Intérprete / Familiar ouvinte</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Tipo Sanguíneo</label>
+                            <select name="tipo_sanguineo" class="form-select">
+                                <option value="O+">O+</option>
+                                <option value="A+">A+</option>
+                                <option value="B+">B+</option>
+                                <option value="AB+">AB+</option>
+                                <option value="O-">O-</option>
+                                <option value="A-">A-</option>
+                                <option value="B-">B-</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Validade da Carteirinha</label>
+                            <input type="date" name="validade_carteirinha" class="form-control" value="2026-12-31">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Cidade</label>
+                            <input type="text" name="cidade" class="form-control" value="São Gonçalo do Amarante">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">URL da Foto (Opcional)</label>
+                            <input type="url" name="foto_url" class="form-control" placeholder="https://...">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label small fw-bold">Ou enviar foto do associado</label>
+                            <input type="file" name="foto" class="form-control" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light border-0 py-3">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary fw-bold px-4">
+                        <i class="fa-solid fa-check me-1"></i> Concluir Cadastro
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

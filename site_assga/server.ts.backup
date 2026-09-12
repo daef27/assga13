@@ -634,22 +634,6 @@ app.get('/admin/associados', (req: Request, res: Response) => {
   });
 });
 
-// Novo Cadastro de Associado
-app.get('/admin/associados/novo', (req: Request, res: Response) => {
-  if (!requireAdmin(req, res)) return;
-
-  res.render('admin/associado_novo', {
-    title: 'Novo Cadastro - Gestão ASSGA',
-    activePage: 'admin_associados',
-    bodyClass: 'admin-theme',
-    activeAdminTab: 'associados',
-    totalAssociados: associados.length,
-    totalMensalidades: mensalidades.length,
-    totalCarteirinhas: carteirinhas.length,
-    totalEventos: eventos.length,
-  });
-});
-
 // Novo Associado
 app.post('/admin/associados/novo', upload.single('foto'), (req: Request, res: Response) => {
   if (!requireAdmin(req, res)) return;
