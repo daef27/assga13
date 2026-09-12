@@ -1,310 +1,170 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title ? title : 'ASSGA - Associação dos Surdos de São Gonçalo do Amarante' %></title>
-    <meta name="description" content="Portal oficial da ASSGA: história, estatuto social, diretoria, departamento esportivo, eventos, carteirinha e área do associado.">
-    <link rel="icon" type="image/jpeg" href="/imagens/Assga_foto.jpg">
-    <link rel="apple-touch-icon" href="/imagens/Assga_foto.jpg">
-    
+    <title><%= typeof title !== 'undefined' ? title : 'ASSGA - Associação dos Surdos' %></title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         :root {
-            --assga-blue: #0d3d8f;
-            --assga-blue-mid: #1a63d0;
-            --assga-blue-dark: #10264a;
-            --assga-light-blue: #edf4ff;
-            --assga-red: #d93d3d;
-            --assga-green: #198754;
-            --assga-yellow: #f4b400;
-            --assga-white: #ffffff;
-            --assga-gray: #5b6c86;
-            --bs-primary: #0d3d8f;
-            --bs-secondary: #1a63d0;
-            --bs-success: #198754;
-            --bs-info: #1a63d0;
-            --bs-warning: #f4b400;
-            --bs-danger: #d93d3d;
-            --bs-light: #ffffff;
-            --bs-dark: #10264a;
-            --bs-body-color: #10264a;
-            --bs-secondary-color: #5b6c86;
+            --assga-blue: #003366;
+            --assga-royal: #0056b3;
+            --assga-yellow: #ffcc00;
+            --assga-red: #c62828;
+            --assga-light: #f8f9fa;
+            --assga-dark: #212529;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background-color: #f4f6f9;
         }
-        body.admin-theme {
-            --admin-bg: #f4f9ff;
-            --admin-panel: #ffffff;
-            --admin-panel-alt: #edf6ff;
-            --admin-text: #1f3762;
-            --admin-muted: #51698d;
-            --admin-border: #d7e7ff;
-            --admin-accent: #0d3d8f;
-            --admin-accent-2: #1e5fd4;
-            --admin-soft: #edf5ff;
-            background: linear-gradient(180deg, #f7fbff 0%, #edf5ff 100%);
-            color: var(--admin-text);
+        .bg-assga-primary {
+            background-color: var(--assga-blue) !important;
         }
-        body.admin-theme .navbar-assga {
-            background: linear-gradient(135deg, #0a2f63 0%, #0d4aa4 46%, #1b6de2 100%);
-            box-shadow: 0 10px 26px rgba(13, 61, 143, 0.22);
+        .text-assga-primary {
+            color: var(--assga-blue) !important;
         }
-        body.admin-theme .sticky-top {
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-            z-index: 1020;
+        .bg-assga-yellow {
+            background-color: var(--assga-yellow) !important;
         }
-        body.admin-theme .navbar-dark,
-        body.admin-theme .navbar[data-bs-theme=dark] {
-            --bs-navbar-color: rgba(255, 255, 255, 0.55);
-            --bs-navbar-hover-color: rgba(255, 255, 255, 0.75);
-            --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);
-            --bs-navbar-active-color: #fff;
-            --bs-navbar-brand-color: #fff;
-            --bs-navbar-brand-hover-color: #fff;
-            --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1);
-            --bs-navbar-toggler-icon-bg: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e);
+        .text-assga-yellow {
+            color: var(--assga-yellow) !important;
         }
-        body.admin-theme .card,
-        body.admin-theme .table,
-        body.admin-theme .alert,
-        body.admin-theme .form-control,
-        body.admin-theme .form-select,
-        body.admin-theme .input-group-text,
-        body.admin-theme .modal-content,
-        body.admin-theme .dropdown-menu {
-            background-color: var(--admin-panel);
-            color: var(--admin-text);
-            border-color: var(--admin-border);
+        .bg-assga-red {
+            background-color: var(--assga-red) !important;
         }
-        body.admin-theme .card,
-        body.admin-theme .table,
-        body.admin-theme .alert,
-        body.admin-theme .modal-content,
-        body.admin-theme .dropdown-menu {
-            box-shadow: 0 14px 28px rgba(34, 70, 122, 0.08) !important;
-            border: 1px solid rgba(169, 196, 255, 0.45);
+        .border-assga-yellow {
+            border-color: var(--assga-yellow) !important;
         }
-        body.admin-theme .table-light,
-        body.admin-theme .bg-light,
-        body.admin-theme .bg-white,
-        body.admin-theme .table thead th {
-            background: linear-gradient(180deg, #f6fbff 0%, #edf5ff 100%) !important;
-            color: var(--admin-text) !important;
-        }
-        body.admin-theme .table thead th {
-            border-bottom: 1px solid var(--admin-border);
-            font-weight: 700;
-            letter-spacing: 0.02em;
-        }
-        body.admin-theme .text-primary,
-        body.admin-theme .text-secondary,
-        body.admin-theme .text-success,
-        body.admin-theme .text-info,
-        body.admin-theme .text-warning,
-        body.admin-theme .text-danger,
-        body.admin-theme .text-dark,
-        body.admin-theme .fw-bold,
-        body.admin-theme h1,
-        body.admin-theme h2,
-        body.admin-theme h3,
-        body.admin-theme h4,
-        body.admin-theme h5,
-        body.admin-theme h6 {
-            color: var(--admin-text) !important;
-            font-weight: 700 !important;
-        }
-        body.admin-theme .text-muted,
-        body.admin-theme .small,
-        body.admin-theme .form-label,
-        body.admin-theme .nav-link.text-dark,
-        body.admin-theme .nav-link:not(.active) {
-            color: var(--admin-muted) !important;
-        }
-        body.admin-theme .btn-primary,
-        body.admin-theme .btn-success,
-        body.admin-theme .btn-info,
-        body.admin-theme .btn-secondary,
-        body.admin-theme .btn-dark,
-        body.admin-theme .bg-primary,
-        body.admin-theme .bg-success,
-        body.admin-theme .bg-info,
-        body.admin-theme .bg-secondary,
-        body.admin-theme .nav-pills .nav-link.active,
-        body.admin-theme .badge.bg-primary,
-        body.admin-theme .badge.bg-success,
-        body.admin-theme .badge.bg-info,
-        body.admin-theme .badge.bg-secondary {
-            background: linear-gradient(135deg, #0d3d8f 0%, #1e5fd4 100%) !important;
-            border-color: #0d3d8f !important;
-            color: #ffffff !important;
-            box-shadow: 0 8px 18px rgba(13, 61, 143, 0.18);
-        }
-        body.admin-theme .btn-warning,
-        body.admin-theme .bg-warning,
-        body.admin-theme .badge.bg-warning {
-            background: linear-gradient(135deg, #f7b500 0%, #ffd11a 100%) !important;
-            border-color: #f7b500 !important;
-            color: #1d2d3d !important;
-        }
-        body.admin-theme .btn-danger,
-        body.admin-theme .bg-danger,
-        body.admin-theme .badge.bg-danger {
-            background: linear-gradient(135deg, #d90000 0%, #ff2d2d 100%) !important;
-            border-color: #d90000 !important;
-            color: #ffffff !important;
-        }
-        body.admin-theme .btn-outline-primary,
-        body.admin-theme .btn-outline-secondary,
-        body.admin-theme .btn-outline-success,
-        body.admin-theme .btn-outline-warning,
-        body.admin-theme .btn-outline-danger,
-        body.admin-theme .btn-outline-dark {
-            background-color: transparent !important;
-            border-color: #0d3d8f !important;
-            color: #0d3d8f !important;
-        }
-        body.admin-theme .btn-outline-primary:hover,
-        body.admin-theme .btn-outline-secondary:hover,
-        body.admin-theme .btn-outline-success:hover,
-        body.admin-theme .btn-outline-warning:hover,
-        body.admin-theme .btn-outline-danger:hover,
-        body.admin-theme .btn-outline-dark:hover {
-            background: linear-gradient(135deg, #0d3d8f 0%, #3e7de0 100%) !important;
-            border-color: #0d3d8f !important;
-            color: #ffffff !important;
-        }
-        body.admin-theme .bg-primary-subtle,
-        body.admin-theme .badge.bg-light,
-        body.admin-theme .badge.bg-light.text-primary,
-        body.admin-theme .border-primary-subtle {
-            background-color: #eef8ff !important;
-            color: #0d3d8f !important;
-            border-color: #d7eaff !important;
-        }
-        body.admin-theme .nav-link {
-            color: #0d3d8f !important;
-        }
-        body.admin-theme .nav-link.active {
-            background: linear-gradient(135deg, #0d3d8f 0%, #1d6fe8 100%) !important;
-            color: #ffffff !important;
-            box-shadow: 0 8px 18px rgba(13, 61, 143, 0.2);
-        }
-        body.admin-theme .nav-pills .nav-link {
-            background: linear-gradient(180deg, #ffffff 0%, #f4f9ff 100%);
-            color: #123d78;
-            border: 1px solid #d5e5ff;
-            transition: all 0.2s ease;
-            font-weight: 700;
-        }
-        body.admin-theme .nav-pills .nav-link:hover {
-            border-color: #b8d4ff;
-            background: linear-gradient(180deg, #f8fbff 0%, #edf5ff 100%);
-            transform: translateY(-1px);
-        }
-        body.admin-theme .nav-pills .nav-link.active {
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
-        }
-        body.admin-theme .border,
-        body.admin-theme .border-top,
-        body.admin-theme .border-bottom,
-        body.admin-theme .border-start,
-        body.admin-theme .border-end {
-            border-color: var(--admin-border) !important;
-        }
-        body.admin-theme .badge {
-            border-color: transparent;
-        }
-        body.admin-theme .form-control::placeholder,
-        body.admin-theme .form-select::placeholder {
-            color: #7187a5;
-        }
-        body.admin-theme .table td,
-        body.admin-theme .table th {
-            color: var(--admin-text);
-            border-color: var(--admin-border);
-            vertical-align: middle;
-        }
-        .alert-success {
-            background: linear-gradient(135deg, #1b9d65 0%, #2bc77d 100%);
-            border-color: #1b9d65;
-            color: #ffffff;
-        }
-        .alert-warning {
-            background: linear-gradient(135deg, #f7b500 0%, #ffd11a 100%);
-            border-color: #f7b500;
-            color: #1d2d3d;
-        }
-        .alert-danger {
-            background: linear-gradient(135deg, #d90000 0%, #ff2d2d 100%);
-            border-color: #d90000;
-            color: #ffffff;
-        }
-        .alert-dismissible .btn-close {
-            filter: invert(1) grayscale(100%) brightness(200%);
+        .border-assga-primary {
+            border-color: var(--assga-blue) !important;
         }
         .navbar-assga {
-            background: linear-gradient(135deg, #0a2f63 0%, #0d4aa4 46%, #1b6de2 100%);
-            box-shadow: 0 10px 26px rgba(13, 61, 143, 0.22);
+            background: linear-gradient(90deg, #002244 0%, #003366 50%, #004080 100%);
+            border-bottom: 4px solid var(--assga-yellow);
         }
         .navbar-brand img {
-            max-height: 48px;
-            border-radius: 4px;
+            height: 48px;
+            width: auto;
+            border-radius: 8px;
+            margin-right: 12px;
+            border: 2px solid #ffffff;
         }
         .nav-link {
             color: rgba(255, 255, 255, 0.9) !important;
-            font-weight: 600;
-            padding: 8px 14px !important;
-            border-radius: 20px;
-            transition: all 0.2s;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem !important;
+            border-radius: 6px;
+            transition: all 0.2s ease;
         }
         .nav-link:hover, .nav-link.active {
-            color: #003366 !important;
-            background-color: var(--assga-white);
-        }
-        .btn-accent {
-            background: linear-gradient(135deg, #d93d3d 0%, #ef4e4e 100%);
-            color: var(--assga-white);
-            font-weight: 700;
-            border: none;
-            box-shadow: 0 8px 18px rgba(217, 61, 61, 0.2);
-        }
-        .btn-accent:hover {
-            background: linear-gradient(135deg, #c62d2d 0%, #d93d3d 100%);
-            color: var(--assga-white);
+            color: var(--assga-yellow) !important;
+            background-color: rgba(255, 255, 255, 0.1);
         }
         .footer-assga {
             background-color: #001f3f;
-            color: var(--assga-white);
+            color: #ffffff;
+            border-top: 4px solid var(--assga-yellow);
             margin-top: auto;
         }
-        .badge-libras {
-            background-color: var(--assga-red);
-            color: var(--assga-white);
-            font-size: 0.8rem;
-            padding: 4px 10px;
-            border-radius: 12px;
+        .vlibras-badge {
+            background: linear-gradient(135deg, #1976d2, #0d47a1);
+            color: white;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+        .vlibras-badge:hover {
+            color: #ffeb3b;
+        }
+        .admin-sidebar {
+            min-height: calc(100vh - 160px);
+            background: #ffffff;
+            border-right: 1px solid #e0e0e0;
+        }
+        .admin-nav .nav-link {
+            color: #495057 !important;
+            border-radius: 8px;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        .admin-nav .nav-link:hover {
+            background-color: #e9ecef;
+            color: var(--assga-blue) !important;
+        }
+        .admin-nav .nav-link.active {
+            background-color: var(--assga-blue) !important;
+            color: #ffffff !important;
+        }
+        .ai-assistant-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1050;
+            box-shadow: 0 4px 15px rgba(0, 51, 102, 0.4);
+            border: 2px solid var(--assga-yellow);
+        }
+        .high-contrast {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        .high-contrast .card {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+            border-color: #ffff00 !important;
+        }
+        .high-contrast .text-muted {
+            color: #cccccc !important;
+        }
+        .high-contrast .navbar-assga {
+            background: #000000 !important;
+            border-bottom: 4px solid #ffff00 !important;
+        }
+        .high-contrast a {
+            color: #ffff00 !important;
         }
     </style>
 </head>
-<body class="<%= typeof bodyClass !== 'undefined' && bodyClass ? bodyClass : '' %>">
+<body class="<%= typeof bodyClass !== 'undefined' ? bodyClass : '' %>">
+
+    <!-- Top Bar de Utilidades e Acessibilidade -->
+    <div class="bg-dark text-white py-1 px-3 border-bottom border-secondary small">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div class="d-flex align-items-center gap-3">
+                <span><i class="fa-solid fa-hands-asl-interpreting text-warning me-1"></i> Acessibilidade em LIBRAS</span>
+                <span class="d-none d-md-inline text-secondary">|</span>
+                <span class="d-none d-md-inline"><i class="fa-solid fa-location-dot text-warning me-1"></i> São Gonçalo do Amarante - RN</span>
+                <span class="d-none d-lg-inline text-secondary">|</span>
+                <span class="d-none d-lg-inline">CNPJ: 57.242.499/0001-60</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <button id="btnAumentarFonte" class="btn btn-sm btn-outline-light py-0 px-2" title="Aumentar Fonte" style="font-size: 0.75rem;">A+</button>
+                <button id="btnDiminuirFonte" class="btn btn-sm btn-outline-light py-0 px-2" title="Diminuir Fonte" style="font-size: 0.75rem;">A-</button>
+                <button id="btnContraste" class="btn btn-sm btn-outline-warning py-0 px-2" title="Alto Contraste" style="font-size: 0.75rem;">
+                    <i class="fa-solid fa-circle-half-stroke"></i> Contraste
+                </button>
+                <a href="/idioma" class="vlibras-badge py-0 px-2" style="font-size: 0.75rem;">
+                    <i class="fa-solid fa-hands"></i> LIBRAS
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Navegação Principal -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-assga sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-assga sticky-top shadow-sm py-2">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+            <a class="navbar-brand d-flex align-items-center" href="/">
                 <img src="/imagens/Assga_foto.jpg" alt="Logo da ASSGA">
                 <span class="fw-bold text-white fs-3">ASSGA</span>
                 <span class="d-none d-md-inline text-white-50 fs-6 border-start ps-2">Portal dos Surdos</span>
@@ -358,15 +218,27 @@
         </div>
     </nav>
 
-    <% if (typeof messages !== 'undefined' && messages.length > 0) { %>
-    <div class="container mt-3">
-        <% messages.forEach(function(msg) { %>
-        <div class="alert alert-<%= msg.type || 'info' %> alert-dismissible fade show" role="alert">
-            <%= msg.text %>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <% if (typeof messages !== 'undefined' && messages) { %>
+        <div class="container mt-3">
+            <% if (messages.success) { %>
+                <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fa-solid fa-circle-check me-2"></i> <%= messages.success %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %>
+            <% if (messages.error) { %>
+                <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fa-solid fa-triangle-exclamation me-2"></i> <%= messages.error %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %>
+            <% if (messages.info) { %>
+                <div class="alert alert-info alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fa-solid fa-circle-info me-2"></i> <%= messages.info %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %>
         </div>
-        <% }); %>
-    </div>
     <% } %>
 
     <main class="flex-grow-1 py-4">
