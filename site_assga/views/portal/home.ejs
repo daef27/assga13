@@ -2,37 +2,37 @@
 
 <div class="container">
     <!-- Hero Banner com Identidade Visual -->
-    <div class="p-5 mb-4 rounded-4 border shadow-sm" style="background: linear-gradient(135deg, #003366 0%, #004aad 100%); color: white;">
+    <div id="hero-banner-assga" class="p-5 mb-4 rounded-4 border shadow-sm" style="background-color: #0d6efd !important; color: #ffffff !important; border-color: #0b5ed7 !important;">
         <div class="container-fluid py-3">
             <div class="row align-items-center">
                 <div class="col-lg-8">
-                    <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold mb-3">
+                    <span class="badge px-3 py-2 rounded-pill fw-bold mb-3" style="background-color: #0b5ed7; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.4);">
                         <i class="fa-solid fa-hands-asl-interpreting me-1"></i> Comunidade Surda Potiguar
                     </span>
                     <h1 class="display-5 fw-bold text-white mb-3">ASSGA - Associação dos Surdos</h1>
-                    <p class="col-md-10 fs-5 text-light opacity-90">
+                    <p class="col-md-10 fs-5 text-white opacity-95">
                         Promovendo inclusão, cidadania, direitos linguísticos em LIBRAS e excelência no desporto dos surdos em São Gonçalo do Amarante e região.
                     </p>
                     <div class="d-flex flex-wrap gap-2 mt-4">
-                        <a href="/carteirinha" class="btn btn-warning btn-lg fw-bold px-4">
+                        <a href="/carteirinha" class="btn btn-lg fw-bold px-4 shadow-sm" style="background-color: #ffffff !important; color: #0d6efd !important; border: 1px solid #ffffff !important;">
                             <i class="fa-solid fa-id-card me-2"></i> Emitir Carteirinha
                         </a>
-                        <a href="/pagamento" class="btn btn-outline-light btn-lg px-4">
+                        <a href="/pagamento" class="btn btn-lg px-4 text-white" style="background-color: transparent !important; color: #ffffff !important; border: 2px solid #ffffff !important;">
                             <i class="fa-brands fa-pix me-2"></i> Mensalidade PIX
                         </a>
-                        <a href="/esportiva" class="btn btn-light btn-lg px-4 text-primary fw-semibold">
+                        <a href="/esportiva" class="btn btn-lg px-4 text-white" style="background-color: #0b5ed7 !important; color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.4) !important;">
                             <i class="fa-solid fa-trophy me-2"></i> Esportes
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-4 text-center mt-4 mt-lg-0">
-                    <div class="card bg-white text-dark p-3 rounded-4 shadow border-0">
+                    <div class="card bg-white p-3 rounded-4 shadow border" style="border-color: #9ec5fe !important;">
                         <h6 class="fw-bold text-primary mb-2"><i class="fa-solid fa-bullhorn me-1"></i> Comunicado Oficial</h6>
                         <p class="small mb-3 text-muted">Acesse a emissão e impressão da carteirinha oficial de sócio com validação eletrônica por QR Code.</p>
                         <% if (user) { %>
-                            <a href="/area-associado" class="btn btn-primary btn-sm fw-bold">Meu Painel de Associado</a>
+                            <a href="/area-associado" class="btn btn-primary btn-sm fw-bold" style="background-color: #0d6efd !important; border-color: #0d6efd !important;">Meu Painel de Associado</a>
                         <% } else { %>
-                            <a href="/login" class="btn btn-primary btn-sm fw-bold">Acessar Área do Associado</a>
+                            <a href="/login" class="btn btn-primary btn-sm fw-bold" style="background-color: #0d6efd !important; border-color: #0d6efd !important;">Acessar Área do Associado</a>
                         <% } %>
                     </div>
                 </div>
