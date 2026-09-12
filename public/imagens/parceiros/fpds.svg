@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+  <rect width="200" height="80" rx="8" fill="#ffffff"/>
+  <rect x="18" y="16" width="48" height="48" rx="12" fill="#198754"/>
+  <path d="M42 24 L52 38 L42 54 L32 38 Z" fill="#ffffff" opacity="0.9"/>
+  <circle cx="42" cy="38" r="7" fill="#f4b400"/>
+  <text x="76" y="34" font-family="'Segoe UI', Arial, sans-serif" font-weight="900" font-size="16" fill="#198754">FPDS</text>
+  <text x="76" y="48" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="9" fill="#10264a">FEDERAÇÃO POTIGUAR</text>
+  <text x="76" y="60" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="8.5" fill="#5b6c86">DESPORTO DE SURDOS</text>
+</svg>

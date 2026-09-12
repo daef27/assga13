@@ -1,0 +1,90 @@
+<%- include('../layout/header') %>
+
+<div class="container py-2">
+    <%- include('nav_tabs') %>
+
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+                <span class="badge bg-success text-white px-3 py-1 rounded-pill fw-bold text-uppercase small">Engajamento Comunitário</span>
+                <h4 class="fw-bold text-primary mb-1 mt-1"><i class="fa-solid fa-handshake-angle me-2"></i>Inscrições de Voluntários</h4>
+                <p class="text-muted small mb-0">Gerencie as inscrições recebidas pelo formulário público &quot;Quero Ser Voluntário&quot;.</p>
+            </div>
+            <div>
+                <span class="badge bg-primary px-3 py-2 rounded-pill fw-bold">
+                    <%= voluntarios.length %> Voluntários Cadastrados
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabela de Voluntários -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+        <% if (voluntarios && voluntarios.length > 0) { %>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Data</th>
+                            <th>Nome Completo</th>
+                            <th>Contato</th>
+                            <th>Idade</th>
+                            <th>Mensagem / Disponibilidade</th>
+                            <th>Status</th>
+                            <th class="text-end">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% voluntarios.forEach(function(v) { %>
+                        <tr>
+                            <td class="small text-muted text-nowrap"><%= v.data_cadastro %></td>
+                            <td>
+                                <div class="fw-bold text-dark"><%= v.nome %></div>
+                            </td>
+                            <td>
+                                <div><a href="mailto:<%= v.email %>" class="small text-decoration-none"><%= v.email %></a></div>
+                                <div>
+                                    <a href="https://wa.me/<%= v.telefone.replace(/\D/g, '') %>" target="_blank" class="small text-success fw-semibold text-decoration-none">
+                                        <i class="fa-brands fa-whatsapp me-1"></i><%= v.telefone %>
+                                    </a>
+                                </div>
+                            </td>
+                            <td><span class="badge bg-light text-dark border"><%= v.idade %> anos</span></td>
+                            <td style="max-width: 320px;">
+                                <div class="small text-muted"><%= v.mensagem %></div>
+                            </td>
+                            <td>
+                                <span class="badge <%= v.status === 'Aprovado' ? 'bg-success' : (v.status === 'Em Análise' ? 'bg-warning text-dark' : (v.status === 'Contatado' ? 'bg-info text-white' : 'bg-secondary')) %>">
+                                    <%= v.status %>
+                                </span>
+                            </td>
+                            <td class="text-end text-nowrap">
+                                <form method="post" action="/admin/voluntarios/<%= v.id %>/status" class="d-inline-block me-1">
+                                    <select name="status" class="form-select form-select-sm d-inline-block w-auto" onchange="this.form.submit()">
+                                        <option value="Novo" <%= v.status === 'Novo' ? 'selected' : '' %>>Novo</option>
+                                        <option value="Em Análise" <%= v.status === 'Em Análise' ? 'selected' : '' %>>Em Análise</option>
+                                        <option value="Contatado" <%= v.status === 'Contatado' ? 'selected' : '' %>>Contatado</option>
+                                        <option value="Aprovado" <%= v.status === 'Aprovado' ? 'selected' : '' %>>Aprovado</option>
+                                    </select>
+                                </form>
+                                <form method="post" action="/admin/voluntarios/<%= v.id %>/excluir" class="d-inline-block" onsubmit="return confirm('Excluir este cadastro de voluntário?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill" title="Excluir">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <div class="text-center py-5 text-muted">
+                <i class="fa-solid fa-user-clock display-5 mb-2 opacity-50"></i>
+                <p class="mb-0">Nenhuma inscrição de voluntário registrada até o momento.</p>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<%- include('../layout/footer') %>

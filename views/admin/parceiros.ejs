@@ -1,0 +1,183 @@
+<%- include('../layout/header') %>
+
+<div class="container py-2">
+    <%- include('nav_tabs') %>
+
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+                <span class="badge bg-warning text-dark px-3 py-1 rounded-pill fw-bold text-uppercase small">Exibição no Rodapé</span>
+                <h4 class="fw-bold text-primary mb-1 mt-1"><i class="fa-solid fa-handshake me-2"></i>Gestão de Parceiros &amp; Apoiadores</h4>
+                <p class="text-muted small mb-0">Cadastre, edite a ordem e gerencie quais logotipos de apoiadores e patrocinadores são exibidos na seção de rodapé do portal.</p>
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary fw-bold rounded-pill px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#modalNovoParceiro">
+                    <i class="fa-solid fa-plus me-1"></i> Adicionar Parceiro / Apoiador
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabela de Parceiros Cadastrados -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold text-dark mb-0">Logotipos Cadastrados para o Rodapé</h5>
+            <span class="badge bg-light text-primary border px-3 py-2 rounded-pill fw-bold">
+                <%= parceiros.filter(p => p.ativo).length %> de <%= parceiros.length %> visíveis no rodapé
+            </span>
+        </div>
+
+        <% if (parceiros && parceiros.length > 0) { %>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 80px;">Ordem</th>
+                            <th style="width: 140px;">Logotipo</th>
+                            <th>Nome do Parceiro</th>
+                            <th>Categoria</th>
+                            <th>Link Oficial</th>
+                            <th class="text-center">Visível no Rodapé</th>
+                            <th class="text-end">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% parceiros.forEach(function(p) { %>
+                        <tr>
+                            <td class="fw-bold text-muted">#<%= p.ordem %></td>
+                            <td>
+                                <div class="p-2 border rounded-3 bg-white text-center shadow-sm" style="width: 110px; height: 55px; display: flex; align-items: center; justify-content: center;">
+                                    <img src="<%= p.logo_url %>" alt="<%= p.nome %>" style="max-height: 40px; max-width: 95px; object-fit: contain;">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="fw-bold text-dark"><%= p.nome %></div>
+                                <% if (p.descricao) { %>
+                                <div class="small text-muted"><%= p.descricao %></div>
+                                <% } %>
+                            </td>
+                            <td>
+                                <span class="badge <%= p.tipo.includes('Institucional') ? 'bg-primary' : (p.tipo.includes('Esportivo') ? 'bg-success' : 'bg-warning text-dark') %>">
+                                    <%= p.tipo %>
+                                </span>
+                            </td>
+                            <td>
+                                <% if (p.link_url) { %>
+                                <a href="<%= p.link_url %>" target="_blank" class="small text-decoration-none">
+                                    <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Acessar Link
+                                </a>
+                                <% } else { %>
+                                <span class="small text-muted">Não informado</span>
+                                <% } %>
+                            </td>
+                            <td class="text-center">
+                                <form method="post" action="/admin/parceiros/<%= p.id %>/toggle">
+                                    <% if (p.ativo) { %>
+                                    <button type="submit" class="btn btn-sm btn-success rounded-pill px-3 fw-bold" title="Clique para ocultar do rodapé">
+                                        <i class="fa-solid fa-eye me-1"></i> Ativo
+                                    </button>
+                                    <% } else { %>
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary rounded-pill px-3" title="Clique para exibir no rodapé">
+                                        <i class="fa-solid fa-eye-slash me-1"></i> Oculto
+                                    </button>
+                                    <% } %>
+                                </form>
+                            </td>
+                            <td class="text-end">
+                                <form method="post" action="/admin/parceiros/<%= p.id %>/excluir" onsubmit="return confirm('Tem certeza que deseja remover este parceiro da lista?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill" title="Excluir parceiro">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <div class="text-center py-5 text-muted">
+                <i class="fa-solid fa-handshake display-5 mb-2 opacity-50"></i>
+                <p class="mb-0">Nenhum parceiro ou apoiador cadastrado. Clique no botão acima para adicionar.</p>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<!-- Modal Novo Parceiro / Apoiador -->
+<div class="modal fade" id="modalNovoParceiro" tabindex="-1" aria-labelledby="modalNovoParceiroLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded-4 border-0 shadow">
+            <div class="modal-header bg-primary text-white rounded-top-4">
+                <h5 class="modal-title fw-bold" id="modalNovoParceiroLabel">
+                    <i class="fa-solid fa-handshake me-2"></i>Cadastrar Parceiro ou Apoiador
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <form method="post" action="/admin/parceiros/novo" enctype="multipart/form-data">
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nome da Entidade / Empresa / Patrocinador</label>
+                        <input type="text" name="nome" class="form-control" placeholder="Ex: Federação Potiguar de Desporto de Surdos" required>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Categoria</label>
+                            <select name="tipo" class="form-select" required>
+                                <option value="Parceiro Institucional">Parceiro Institucional</option>
+                                <option value="Apoiador Esportivo" selected>Apoiador Esportivo</option>
+                                <option value="Patrocinador">Patrocinador</option>
+                                <option value="Apoio Comunitário">Apoio Comunitário</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Ordem de Exibição no Rodapé</label>
+                            <input type="number" name="ordem" class="form-control" value="<%= parceiros.length + 1 %>" min="1" required>
+                        </div>
+                    </div>
+
+                    <div class="card p-3 mb-3 bg-light border-0 rounded-3">
+                        <label class="form-label fw-bold mb-1">Logotipo (Arquivo de Imagem OU URL)</label>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="small text-muted">Upload de Arquivo (PNG, JPG, SVG):</label>
+                                <input type="file" name="logo" class="form-control" accept="image/*">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small text-muted">Ou informe a URL da Imagem:</label>
+                                <input type="text" name="logo_url_externa" class="form-control" placeholder="https://exemplo.com/logo.png">
+                            </div>
+                        </div>
+                        <div class="form-text small mt-1">
+                            Recomenda-se imagens com fundo transparente ou branco para manter a harmonia no rodapé.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Link do Site / Rede Social (Opcional)</label>
+                        <input type="url" name="link_url" class="form-control" placeholder="https://exemplo.org.br">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Descrição / Convênio (Opcional)</label>
+                        <textarea name="descricao" rows="2" class="form-control" placeholder="Ex: Cessão de materiais esportivos para a equipe de futsal da ASSGA."></textarea>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="ativoSwitch" name="ativo" value="true" checked>
+                        <label class="form-check-label fw-bold" for="ativoSwitch">Exibir imediatamente na seção de rodapé do portal</label>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light rounded-bottom-4">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary fw-bold rounded-pill px-4">
+                        <i class="fa-solid fa-save me-1"></i> Salvar Parceiro
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../layout/footer') %>

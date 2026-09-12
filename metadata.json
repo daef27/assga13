@@ -1,0 +1,6 @@
+{
+  "name": "Portal ASSGA",
+  "description": "Portal oficial da Associação dos Surdos de São Gonçalo do Amarante - RN com carteirinha de sócio, modalidades esportivas, estatuto social, agenda de eventos, formulário de contato, seja um voluntário, vitrine de parceiros no rodapé e painel administrativo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
