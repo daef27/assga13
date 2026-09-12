@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
-  <rect width="200" height="80" rx="8" fill="#ffffff"/>
-  <rect x="18" y="16" width="48" height="48" rx="12" fill="#d93d3d"/>
-  <path d="M32 40 L40 32 L48 40 L40 48 Z" fill="#ffffff"/>
-  <circle cx="40" cy="40" r="4" fill="#f4b400"/>
-  <text x="76" y="34" font-family="'Segoe UI', Arial, sans-serif" font-weight="900" font-size="14" fill="#d93d3d">SEMJEL</text>
-  <text x="76" y="48" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="8.5" fill="#10264a">SEC. JUVENTUDE, ESPORTE</text>
-  <text x="76" y="60" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="8" fill="#5b6c86">&amp; LAZER - SÃO GONÇALO</text>
-</svg>

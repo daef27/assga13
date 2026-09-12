@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
-  <rect width="200" height="80" rx="8" fill="#ffffff"/>
-  <circle cx="42" cy="40" r="22" fill="#1a63d0"/>
-  <path d="M34 46 C34 36, 42 28, 48 30 C52 32, 50 38, 44 42 C40 45, 36 47, 34 46 Z" fill="#ffffff"/>
-  <circle cx="46" cy="34" r="3" fill="#f4b400"/>
-  <text x="76" y="34" font-family="'Segoe UI', Arial, sans-serif" font-weight="900" font-size="15" fill="#1a63d0">FENEIS</text>
-  <text x="76" y="48" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="9" fill="#10264a">EDUCAÇÃO &amp; CIDADANIA</text>
-  <text x="76" y="60" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="8.5" fill="#5b6c86">DA COMUNIDADE SURDA</text>
-</svg>
